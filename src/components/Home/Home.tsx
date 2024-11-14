@@ -1,5 +1,6 @@
-import React from 'react'
-import "./Home.css"
+import React from 'react';
+import "./Home.css";
+import MultiItemCarousel from './MultiItemCarousel';
 
 const Home = () => {
   return (
@@ -21,6 +22,12 @@ const Home = () => {
             <div className='fadout'>
 
             </div>
+        </section>
+        <section className='p-10 lg:py-10 lg:px-20'>
+            <p className='text-2xl font-semibold text-gray-400 py-3 pb-10'>
+                Top Meals
+            </p>
+            <MultiItemCarousel/>
         </section>
     </div>
   )
