@@ -2,6 +2,7 @@ import { Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typogr
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import React, { useState } from 'react'
+import MenuCard from './MenuCard';
 
 const categories = ["pizza", "burger", "chicken", "rice", "fries"];
 const foodTypes = [
@@ -10,6 +11,7 @@ const foodTypes = [
     {label: "Non-Vegetarian", value: "non_vegetarian"},
     {label: "Seasonal", value: "seasonal"},
 ];
+const menus = [1, 2, 3, 4, 5];
 
 const RestaurantDetail = () => {
 
@@ -111,7 +113,7 @@ const RestaurantDetail = () => {
                     </div>
                 </div>
                 <div className='space-y-5 lg:w-[80%] lg:pl-10'>
-                    
+                    {menus.map((item) => <MenuCard/>)}
                 </div>
             </section>
         </section>
