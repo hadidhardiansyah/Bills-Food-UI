@@ -7,16 +7,20 @@ import { darkTheme } from './Theme/DarkTheme';
 import Home from './components/Home/Home';
 import RestaurantDetail from './components/Restaurant/RestaurantDetail';
 import Cart from './components/Cart/Cart';
+import Profile from './components/Profile/Profile';
+import { CustomerRoute } from './Routers/CustomerRoute';
 
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
-      <Navbar/>
+      {/* <Navbar/> */}
 
       {/* <Home/> */}
       {/* <RestaurantDetail/> */}
-      <Cart/>
+      {/* <Cart/> */}
+      {/* <Profile/> */}
+      <CustomerRoute/>
     </ThemeProvider>
   );
 }
