@@ -1,10 +1,11 @@
 import React, { FC } from 'react'
 import { Navbar } from '../components/Navbar/Navbar'
 import { Route, Routes } from 'react-router-dom'
-import { Home } from '@mui/icons-material'
 import RestaurantDetail from '../components/Restaurant/RestaurantDetail'
 import Cart from '../components/Cart/Cart'
 import Profile from '../components/Profile/Profile'
+import Home from '../components/Home/Home'
+import { Auth } from '../components/Auth/Auth'
 
 interface CustomerRouteProps {
   
@@ -21,6 +22,7 @@ export const CustomerRoute: FC<CustomerRouteProps> = ({  }) => {
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/my-profile/*' element={<Profile/>}/>
         </Routes>
+        <Auth/>
     </div>
   )
 }

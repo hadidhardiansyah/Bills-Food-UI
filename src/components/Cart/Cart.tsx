@@ -7,7 +7,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { FormAddressModel } from '../../models/formAddressModel';
 
-const style = {
+export const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
