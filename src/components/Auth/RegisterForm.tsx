@@ -2,13 +2,20 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typograph
 import { Field, Form, Formik } from 'formik';
 import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { FormRegisterModel } from '../../models/authModel';
+import { UserRegisterModel } from '../../models/authModel';
+import { registerUser } from '../State/Authentication/Action';
+import { useDispatch } from 'react-redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '../State/store';
 
 interface RegisterFormProps {
   
 }
 
-const initialValues: FormRegisterModel = {
+export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
+
+const initialValues: UserRegisterModel = {
   fullName: '',
   role: 'ROLE_CUSTOMER',
   email: '',
@@ -17,9 +24,10 @@ const initialValues: FormRegisterModel = {
 
 export const RegisterForm: FC<RegisterFormProps> = ({  }) => {
     const navigate = useNavigate();
-    const handleSubmit = (value: any) => {
-      console.log('VALUE: ',value);
-      
+    const dispatch = useDispatch<AppDispatch>();
+
+    const handleSubmit = (value: UserRegisterModel) => {
+        dispatch(registerUser({userData: value, navigate}))  
     };
   return (
     <div>

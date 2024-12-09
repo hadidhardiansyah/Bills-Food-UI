@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Navbar } from './components/Navbar/Navbar';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { darkTheme } from './Theme/DarkTheme';
-import Home from './components/Home/Home';
-import RestaurantDetail from './components/Restaurant/RestaurantDetail';
-import Cart from './components/Cart/Cart';
-import Profile from './components/Profile/Profile';
 import { CustomerRoute } from './Routers/CustomerRoute';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from './components/State/Authentication/Action';
+import { RootState, store } from './components/State/store';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 
 function App() {
+
+  const dispatch = useDispatch<ThunkDispatch<RootState, unknown, AnyAction>>();
+  const jwt = localStorage.getItem('jwt');
+  const {auth} = useSelector((store: any) => store)
+
+  useEffect(() => {
+    dispatch(getUser(auth.jwt || jwt))
+  }, [auth.jwt])
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
-      {/* <Navbar/> */}
-
-      {/* <Home/> */}
-      {/* <RestaurantDetail/> */}
-      {/* <Cart/> */}
-      {/* <Profile/> */}
       <CustomerRoute/>
     </ThemeProvider>
   );

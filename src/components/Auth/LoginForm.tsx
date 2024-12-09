@@ -1,21 +1,31 @@
 import React, { FC } from 'react'
-import { FormLoginModel } from '../../models/authModel';
+import { UserLoginModel } from '../../models/authModel';
 import { Button, TextField, Typography } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../State/Authentication/Action';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '../State/store';
 
 interface LoginFormProps {
   
 }
+export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
 
-const initialValues: FormLoginModel = {
+const initialValues: UserLoginModel = {
     email: '',
     password: '',
 };
 
 export const LoginForm: FC<LoginFormProps> = ({  }) => {
     const navigate = useNavigate();
-    const handleSubmit = () => {};
+    const dispatch = useDispatch<AppDispatch>();
+
+    const handleSubmit = (values: UserLoginModel) => {
+        dispatch(loginUser({userData: values, navigate}))
+    };
   return (
     <div>
         <Typography

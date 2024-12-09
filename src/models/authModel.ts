@@ -1,9 +1,9 @@
-export interface FormLoginModel {
+export interface UserLoginModel {
   email: string;
   password: string;
 }
 
-export interface FormRegisterModel extends FormLoginModel {
+export interface UserRegisterModel extends UserLoginModel {
   fullName: string;
   role: string;
 }

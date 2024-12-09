@@ -11,6 +11,11 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { Divider, Drawer, useMediaQuery } from '@mui/material';
 import { MenuModel } from '../../models/menuModel';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { logout } from '../State/Authentication/Action';
+import { RootState } from '../State/store';
 
 interface ProfileNavigationProps {
     open: boolean;
@@ -31,8 +36,14 @@ export const ProfileNavigation: FC<ProfileNavigationProps> = ({ open, handleClos
     
     const isSmallScreen: boolean = useMediaQuery('(max-width: 900px)');
     const navigate = useNavigate();
+    const dispatch = useDispatch<ThunkDispatch<RootState, unknown, AnyAction>>();
     const handleNavigate = (menu: MenuModel) => {
-        navigate(`/my-profile/${menu.title.toLowerCase()}`)
+        if (menu.title === 'Logout') {
+            dispatch(logout());
+            navigate('/');
+        } else {
+            navigate(`/my-profile/${menu.title.toLowerCase()}`)
+        }
     };
 
   return (
