@@ -3,12 +3,12 @@ import { ADD_TO_FAVORITE_FAILURE, ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCE
 import axios from "axios";
 import { api, API_URL } from "../../config/api";
 import { ThunkDispatch } from "redux-thunk";
+import { ReqUserLoginModel, ReqUserRegisterModel } from "../../../models/authModel";
 
-export const registerUser = (reqData: any) => async(dispatch: ThunkDispatch<any, any, AnyAction> ) => {
+export const registerUser = (reqData: ReqUserRegisterModel) => async(dispatch: ThunkDispatch<any, any, AnyAction> ) => {
     dispatch({type: REGISTER_REQUEST})
 
     try {
-        console.log(reqData, 'hadid');
         
         const {data} = await axios.post(`${API_URL}/auth/signup`, reqData.userData);
 
@@ -27,7 +27,7 @@ export const registerUser = (reqData: any) => async(dispatch: ThunkDispatch<any,
     }
 }
 
-export const loginUser = (reqData: any) => async(dispatch: Dispatch) => {
+export const loginUser = (reqData: ReqUserLoginModel) => async(dispatch: Dispatch) => {
     dispatch({type: LOGIN_REQUEST})
 
     try {        
@@ -48,7 +48,7 @@ export const loginUser = (reqData: any) => async(dispatch: Dispatch) => {
     }
 }
 
-export const getUser = (jwt: any) => async(dispatch: Dispatch) => {
+export const getUser = (jwt: string) => async(dispatch: Dispatch) => {
     dispatch({type: GET_USER_REQUEST})
 
     try {        
@@ -68,7 +68,7 @@ export const getUser = (jwt: any) => async(dispatch: Dispatch) => {
     }
 }
 
-export const addToFavorite = (jwt: any, restaurantId: string) => async(dispatch: Dispatch) => {
+export const addToFavorite = (jwt: string, restaurantId: string) => async(dispatch: Dispatch) => {
     dispatch({type: ADD_TO_FAVORITE_REQUEST})
 
     try {        
