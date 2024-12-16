@@ -14,8 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { logout } from '../State/Authentication/Action';
-import { RootState } from '../State/store';
+import { logout } from '../../State/Authentication/Action';
+import { RootState } from '../../State/store';
 
 interface ProfileNavigationProps {
     open: boolean;

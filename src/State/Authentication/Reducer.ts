@@ -1,4 +1,4 @@
-import { isPresentInFavorites } from '../../config/logic';
+import { isPresentInFavorites } from '../../components/config/logic';
 import {
     ADD_TO_FAVORITE_FAILURE,
     ADD_TO_FAVORITE_REQUEST,

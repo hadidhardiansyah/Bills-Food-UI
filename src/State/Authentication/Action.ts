@@ -15,12 +15,12 @@ import {
     REGISTER_SUCCESS,
 } from './ActionTypes';
 import axios from 'axios';
-import { api, API_URL } from '../../config/api';
+import { api, API_URL } from '../../components/config/api';
 import { ThunkDispatch } from 'redux-thunk';
 import {
     ReqUserLoginModel,
     ReqUserRegisterModel,
-} from '../../../models/authModel';
+} from '../../models/authModel';
 
 export const registerUser =
     (reqData: ReqUserRegisterModel) =>

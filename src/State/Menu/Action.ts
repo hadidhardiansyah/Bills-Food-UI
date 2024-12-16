@@ -15,7 +15,7 @@ import {
     UPDATE_MENU_ITEMS_AVAILABILITY_REQUEST,
     UPDATE_MENU_ITEMS_AVAILABILITY_SUCCESS,
 } from './ActionTypes';
-import { api } from '../../config/api';
+import { api } from '../../components/config/api';
 
 export const createMenuItem = ({ menu, jwt }: any) => {
     return async (dispatch: Dispatch) => {

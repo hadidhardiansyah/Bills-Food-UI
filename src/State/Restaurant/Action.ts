@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { api } from '../../config/api';
+import { api } from '../../components/config/api';
 import {
     CREATE_CATEGORY_FAILURE,
     CREATE_CATEGORY_REQUEST,
