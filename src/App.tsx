@@ -12,19 +12,20 @@ import { ThunkDispatch } from 'redux-thunk';
 import { RootStateModel } from './models/storeModel';
 
 function App() {
-  const dispatch = useDispatch<ThunkDispatch<RootState, unknown, AnyAction>>();
-  const jwt = localStorage.getItem('jwt');
-  const {auth} = useSelector((store: RootStateModel ) => store)
+    const dispatch =
+        useDispatch<ThunkDispatch<RootState, unknown, AnyAction>>();
+    const jwt = localStorage.getItem('jwt');
+    const { auth } = useSelector((store: RootStateModel) => store);
 
-  useEffect(() => {
-    dispatch(getUser(auth.jwt || jwt))
-  }, [auth.jwt])
-  return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline/>
-      <CustomerRoute/>
-    </ThemeProvider>
-  );
+    useEffect(() => {
+        dispatch(getUser(auth.jwt || jwt));
+    }, [auth.jwt]);
+    return (
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline />
+            <CustomerRoute />
+        </ThemeProvider>
+    );
 }
 
 export default App;

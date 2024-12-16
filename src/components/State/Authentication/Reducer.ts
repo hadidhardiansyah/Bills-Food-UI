@@ -1,5 +1,19 @@
-import { isPresentInFavorites } from "../../config/logic";
-import { ADD_TO_FAVORITE_FAILURE, ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionTypes";
+import { isPresentInFavorites } from '../../config/logic';
+import {
+    ADD_TO_FAVORITE_FAILURE,
+    ADD_TO_FAVORITE_REQUEST,
+    ADD_TO_FAVORITE_SUCCESS,
+    GET_USER_FAILURE,
+    GET_USER_REQUEST,
+    GET_USER_SUCCESS,
+    LOGIN_FAILURE,
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGOUT,
+    REGISTER_FAILURE,
+    REGISTER_REQUEST,
+    REGISTER_SUCCESS,
+} from './ActionTypes';
 
 const initialState = {
     user: null,
@@ -10,7 +24,7 @@ const initialState = {
     success: null,
 };
 
-export const authReducer = (state = initialState,  action: any) => {
+export const authReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case REGISTER_REQUEST:
         case LOGIN_REQUEST:
@@ -20,7 +34,7 @@ export const authReducer = (state = initialState,  action: any) => {
                 ...state,
                 isLoading: true,
                 error: null,
-                success: null
+                success: null,
             };
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
@@ -28,22 +42,24 @@ export const authReducer = (state = initialState,  action: any) => {
                 ...state,
                 isLoading: false,
                 jwt: action.payload,
-                success: "Register Success"
+                success: 'Register Success',
             };
         case GET_USER_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                user: action.payload
+                user: action.payload,
             };
         case ADD_TO_FAVORITE_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 error: null,
-                favorites: isPresentInFavorites(state.favorites, action.payload) 
-                ? state.favorites.filter((item: any) => item.id === action.payload.id)
-                : [action.payload, ...state.favorites]
+                favorites: isPresentInFavorites(state.favorites, action.payload)
+                    ? state.favorites.filter(
+                          (item: any) => item.id === action.payload.id
+                      )
+                    : [action.payload, ...state.favorites],
             };
         case LOGOUT:
             return initialState;
@@ -55,9 +71,9 @@ export const authReducer = (state = initialState,  action: any) => {
                 ...state,
                 isLoading: false,
                 error: action.payload,
-                success: null
+                success: null,
             };
         default:
             return state;
     }
-}
+};

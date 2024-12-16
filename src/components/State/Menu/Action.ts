@@ -1,10 +1,25 @@
-import { Dispatch } from "redux"
-import { CREATE_MENU_ITEM_FAILURE, CREATE_MENU_ITEM_REQUEST, CREATE_MENU_ITEM_SUCCESS, DELETE_MENU_ITEM_FAILURE, DELETE_MENU_ITEM_REQUEST, DELETE_MENU_ITEM_SUCCESS, GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE, GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST, GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS, SEARCH_MENU_ITEM_FAILURE, SEARCH_MENU_ITEM_SUCCESS, UPDATE_MENU_ITEMS_AVAILABILITY_FAILURE, UPDATE_MENU_ITEMS_AVAILABILITY_REQUEST, UPDATE_MENU_ITEMS_AVAILABILITY_SUCCESS } from "./ActionTypes"
-import { api } from "../../config/api";
+import { Dispatch } from 'redux';
+import {
+    CREATE_MENU_ITEM_FAILURE,
+    CREATE_MENU_ITEM_REQUEST,
+    CREATE_MENU_ITEM_SUCCESS,
+    DELETE_MENU_ITEM_FAILURE,
+    DELETE_MENU_ITEM_REQUEST,
+    DELETE_MENU_ITEM_SUCCESS,
+    GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE,
+    GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST,
+    GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS,
+    SEARCH_MENU_ITEM_FAILURE,
+    SEARCH_MENU_ITEM_SUCCESS,
+    UPDATE_MENU_ITEMS_AVAILABILITY_FAILURE,
+    UPDATE_MENU_ITEMS_AVAILABILITY_REQUEST,
+    UPDATE_MENU_ITEMS_AVAILABILITY_SUCCESS,
+} from './ActionTypes';
+import { api } from '../../config/api';
 
 export const createMenuItem = ({ menu, jwt }: any) => {
     return async (dispatch: Dispatch) => {
-        dispatch({type: CREATE_MENU_ITEM_REQUEST});
+        dispatch({ type: CREATE_MENU_ITEM_REQUEST });
 
         try {
             const { data } = await api.post(`/api/admin/food`, menu, {
@@ -13,19 +28,19 @@ export const createMenuItem = ({ menu, jwt }: any) => {
                 },
             });
 
-            dispatch({type: CREATE_MENU_ITEM_SUCCESS, payload: data});
+            dispatch({ type: CREATE_MENU_ITEM_SUCCESS, payload: data });
             console.log('created menu', data);
         } catch (error) {
             console.log('error', error);
 
-            dispatch({type: CREATE_MENU_ITEM_FAILURE, payload: error});
+            dispatch({ type: CREATE_MENU_ITEM_FAILURE, payload: error });
         }
-    }
-}
+    };
+};
 
 export const getMenuItemsByRestaurantId = (reqData: any) => {
     return async (dispatch: Dispatch) => {
-        dispatch({type: GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST});
+        dispatch({ type: GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST });
 
         try {
             const { data } = await api.get(
@@ -34,22 +49,28 @@ export const getMenuItemsByRestaurantId = (reqData: any) => {
                     headers: {
                         Authorization: `Bearer ${reqData.jwt}`,
                     },
-                },
+                }
             );
 
-            dispatch({type: GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS, payload: data});
+            dispatch({
+                type: GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS,
+                payload: data,
+            });
             console.log('get data menu by restaurant', data);
         } catch (error) {
             console.log('error', error);
 
-            dispatch({type: GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE, payload: error});
+            dispatch({
+                type: GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE,
+                payload: error,
+            });
         }
-    }
-}
+    };
+};
 
 export const searchMenuItem = ({ keyword, jwt }: any) => {
     return async (dispatch: Dispatch) => {
-        dispatch({type: SEARCH_MENU_ITEM_SUCCESS});
+        dispatch({ type: SEARCH_MENU_ITEM_SUCCESS });
 
         try {
             const { data } = await api.get(`/api/food/search?name=${keyword}`, {
@@ -58,15 +79,15 @@ export const searchMenuItem = ({ keyword, jwt }: any) => {
                 },
             });
 
-            dispatch({type: SEARCH_MENU_ITEM_SUCCESS, payload: data});
+            dispatch({ type: SEARCH_MENU_ITEM_SUCCESS, payload: data });
             console.log('get menu item by keyword', data);
         } catch (error) {
             console.log('error', error);
 
-            dispatch({type: SEARCH_MENU_ITEM_FAILURE, payload: error});
-        }        
-    }
-}
+            dispatch({ type: SEARCH_MENU_ITEM_FAILURE, payload: error });
+        }
+    };
+};
 
 // export const getAllIngredientsOfMenuItem = (reqData: any) => {
 //     return async (dispatch: Dispatch) => {
@@ -85,13 +106,13 @@ export const searchMenuItem = ({ keyword, jwt }: any) => {
 //             console.log('error', error);
 
 //             // dispatch({type: , payload: error});
-//         }        
+//         }
 //     }
 // }
 
 export const updateMenuItemsAvailability = ({ foodId, jwt }: any) => {
     return async (dispatch: Dispatch) => {
-        dispatch({type: UPDATE_MENU_ITEMS_AVAILABILITY_REQUEST});
+        dispatch({ type: UPDATE_MENU_ITEMS_AVAILABILITY_REQUEST });
 
         try {
             const { data } = await api.put(
@@ -101,22 +122,28 @@ export const updateMenuItemsAvailability = ({ foodId, jwt }: any) => {
                     headers: {
                         Authorization: `Bearer ${jwt}`,
                     },
-                },
+                }
             );
 
-            dispatch({type: UPDATE_MENU_ITEMS_AVAILABILITY_SUCCESS, payload: data});
+            dispatch({
+                type: UPDATE_MENU_ITEMS_AVAILABILITY_SUCCESS,
+                payload: data,
+            });
             console.log('update menu items avaibility', data);
         } catch (error) {
             console.log('error', error);
 
-            dispatch({type: UPDATE_MENU_ITEMS_AVAILABILITY_FAILURE, payload: error});
+            dispatch({
+                type: UPDATE_MENU_ITEMS_AVAILABILITY_FAILURE,
+                payload: error,
+            });
         }
-    }
-}
+    };
+};
 
 export const deleteFoodAction = ({ foodId, jwt }: any) => {
-     return async (dispatch: Dispatch) => {
-        dispatch({type: DELETE_MENU_ITEM_REQUEST});
+    return async (dispatch: Dispatch) => {
+        dispatch({ type: DELETE_MENU_ITEM_REQUEST });
 
         try {
             const { data } = await api.delete(`/api/admin/food/${foodId}`, {
@@ -125,12 +152,12 @@ export const deleteFoodAction = ({ foodId, jwt }: any) => {
                 },
             });
 
-            dispatch({type: DELETE_MENU_ITEM_SUCCESS, payload: foodId});
+            dispatch({ type: DELETE_MENU_ITEM_SUCCESS, payload: foodId });
             console.log('delete food', data);
         } catch (error) {
             console.log('error', error);
 
-            dispatch({type: DELETE_MENU_ITEM_FAILURE, payload: error});
+            dispatch({ type: DELETE_MENU_ITEM_FAILURE, payload: error });
         }
-     }
-}
+    };
+};

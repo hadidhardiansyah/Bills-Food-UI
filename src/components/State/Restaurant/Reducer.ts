@@ -87,7 +87,9 @@ const restaurantReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 loading: false,
-                events: state.events.filter((event: any) => event.id !== action.payload),
+                events: state.events.filter(
+                    (event: any) => event.id !== action.payload
+                ),
                 restaurantsEvents: state.restaurantsEvents.filter(
                     (event: any) => event.id !== action.payload
                 ),
@@ -120,6 +122,6 @@ const restaurantReducer = (state = initialState, action: any) => {
         default:
             return state;
     }
-}
+};
 
 export default restaurantReducer;

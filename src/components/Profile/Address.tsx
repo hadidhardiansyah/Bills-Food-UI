@@ -1,13 +1,7 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-interface AddressProps {
-  
-}
+interface AddressProps {}
 
-export const Address: FC<AddressProps> = ({  }) => {
-  return (
-    <div>
-     Address
-    </div>
-  )
-}
+export const Address: FC<AddressProps> = ({}) => {
+    return <div>Address</div>;
+};

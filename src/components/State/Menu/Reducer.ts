@@ -46,8 +46,10 @@ const menuItemReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 loading: false,
-                menuItems: state.menuItems.map(
-                    (menuItem: any) => menuItem.id === action.payload.id ? action.payload : menuItem
+                menuItems: state.menuItems.map((menuItem: any) =>
+                    menuItem.id === action.payload.id
+                        ? action.payload
+                        : menuItem
                 ),
             };
         case actionTypes.SEARCH_MENU_ITEM_SUCCESS:
@@ -70,6 +72,6 @@ const menuItemReducer = (state = initialState, action: any) => {
         default:
             return state;
     }
-}
+};
 
 export default menuItemReducer;
