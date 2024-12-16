@@ -3,11 +3,13 @@ import { authReducer } from './Authentication/Reducer';
 import { thunk } from 'redux-thunk';
 import restaurantReducer from './Restaurant/Reducer';
 import menuItemReducer from './Menu/Reducer';
+import cartReducer from './Cart/Reducer';
 
 const rooteReducer = combineReducers({
     auth: authReducer as any,
     restaurant: restaurantReducer as any,
     menu: menuItemReducer as any,
+    cart: cartReducer as any
 });
 
 export type RootState = ReturnType<typeof store.getState>;
