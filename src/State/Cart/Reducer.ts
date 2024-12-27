@@ -17,7 +17,7 @@ const cartReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 loading: true,
-                error: null
+                error: null,
             };
         case actionTypes.FIND_CART_SUCCESS:
         case actionTypes.CLEAR_CART_SUCCESS:
@@ -37,7 +37,7 @@ const cartReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 loading: false,
-                cartItems: state.cartItems.map((item: any) => 
+                cartItems: state.cartItems.map((item: any) =>
                     item.id === action.payload.id ? action.payload : item
                 ),
             };
@@ -45,8 +45,8 @@ const cartReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 loading: false,
-                cartItems: state.cartItems.filter((item: any) =>
-                    item.id !== action.payload
+                cartItems: state.cartItems.filter(
+                    (item: any) => item.id !== action.payload
                 ),
             };
         case actionTypes.FIND_CART_FAILURE:
@@ -67,7 +67,6 @@ const cartReducer = (state = initialState, action: any) => {
             };
         default:
             return state;
-            
     }
 };
 
