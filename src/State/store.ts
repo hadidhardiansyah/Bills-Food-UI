@@ -5,6 +5,8 @@ import restaurantReducer from './Restaurant/Reducer';
 import menuItemReducer from './Menu/Reducer';
 import cartReducer from './Cart/Reducer';
 import { orderReducer } from './Order/Reducer';
+import restaurantsOrderReducer from './RestaurantOrder/Reducer';
+import { ingredientReducer } from './Ingredients/Reducer';
 
 const rooteReducer = combineReducers({
     auth: authReducer as any,
@@ -12,7 +14,8 @@ const rooteReducer = combineReducers({
     menu: menuItemReducer as any,
     cart: cartReducer as any,
     order: orderReducer as any,
-    restaurantOrder: restaurantReducer as any,
+    restaurantOrder: restaurantsOrderReducer as any,
+    ingredient: ingredientReducer as any,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
