@@ -12,6 +12,7 @@ const rooteReducer = combineReducers({
     menu: menuItemReducer as any,
     cart: cartReducer as any,
     order: orderReducer as any,
+    restaurantOrder: restaurantReducer as any,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
