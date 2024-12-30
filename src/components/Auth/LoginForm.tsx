@@ -52,6 +52,7 @@ export const LoginForm: FC<LoginFormProps> = ({}) => {
                         <Field
                             as={TextField}
                             name="password"
+                            type="password"
                             label="Password"
                             fullWidth
                             variant="outlined"
