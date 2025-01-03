@@ -10,12 +10,13 @@ interface FavoritesProps {}
 export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
 
 export const Favorites: FC<FavoritesProps> = ({}) => {
-
     // sementara mengambil all restaurant
     const dispatch = useDispatch<AppDispatch>();
     const jwt = localStorage.getItem('jwt');
 
-    const restaurants  = useSelector((store: RootState) => store.restaurant.restaurants);    
+    const restaurants = useSelector(
+        (store: RootState) => store.restaurant.restaurants
+    );
 
     useEffect(() => {
         if (jwt) {
@@ -32,7 +33,7 @@ export const Favorites: FC<FavoritesProps> = ({}) => {
             </h1>
             <div className="flex flex-wrap justify-center">
                 {restaurants.map((restaurant) => (
-                    <RestaurantCard item={restaurant}/>
+                    <RestaurantCard item={restaurant} />
                 ))}
             </div>
         </div>

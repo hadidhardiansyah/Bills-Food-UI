@@ -14,7 +14,10 @@ const initialState: OrderState = {
     orders: [],
 };
 
-const restaurantsOrderReducer = (state = initialState, action: any): OrderState => {
+const restaurantsOrderReducer = (
+    state = initialState,
+    action: any
+): OrderState => {
     switch (action.type) {
         case GET_RESTAURANTS_ORDER_REQUEST:
         case UPDATE_ORDER_STATUS_REQUEST:

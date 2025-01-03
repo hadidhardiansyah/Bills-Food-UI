@@ -12,7 +12,10 @@ const initialState: RestaurantState = {
     categories: [],
 };
 
-const restaurantReducer = (state = initialState, action: any): RestaurantState => {
+const restaurantReducer = (
+    state = initialState,
+    action: any
+): RestaurantState => {
     switch (action.type) {
         case actionTypes.CREATE_RESTAURANT_REQUEST:
         case actionTypes.GET_ALL_RESTAURANTS_REQUEST:

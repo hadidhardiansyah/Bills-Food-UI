@@ -13,7 +13,10 @@ const initialState: IngredientState = {
     categories: [],
 };
 
-export const ingredientReducer = (state = initialState, action: any): IngredientState => {
+export const ingredientReducer = (
+    state = initialState,
+    action: any
+): IngredientState => {
     switch (action.type) {
         case GET_INGREDIENTS:
             return { ...state, ingredients: action.payload };

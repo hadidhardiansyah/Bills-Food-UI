@@ -1,11 +1,11 @@
-import { combineReducers } from "redux";
-import { authReducer } from "./Authentication/Reducer";
-import cartReducer from "./Cart/Reducer";
-import { ingredientReducer } from "./Ingredients/Reducer";
-import menuItemReducer from "./Menu/Reducer";
-import { orderReducer } from "./Order/Reducer";
-import restaurantReducer from "./Restaurant/Reducer";
-import restaurantsOrderReducer from "./RestaurantOrder/Reducer";
+import { combineReducers } from 'redux';
+import { authReducer } from './Authentication/Reducer';
+import cartReducer from './Cart/Reducer';
+import { ingredientReducer } from './Ingredients/Reducer';
+import menuItemReducer from './Menu/Reducer';
+import { orderReducer } from './Order/Reducer';
+import restaurantReducer from './Restaurant/Reducer';
+import restaurantsOrderReducer from './RestaurantOrder/Reducer';
 
 export const rootReducer = combineReducers({
     auth: authReducer,
