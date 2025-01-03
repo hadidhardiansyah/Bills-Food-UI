@@ -1,6 +1,7 @@
+import { RestaurantState } from '../model';
 import * as actionTypes from './ActionTypes';
 
-const initialState = {
+const initialState: RestaurantState = {
     restaurants: [],
     usersRestaurant: null,
     restaurant: null,
@@ -11,7 +12,7 @@ const initialState = {
     categories: [],
 };
 
-const restaurantReducer = (state = initialState, action: any) => {
+const restaurantReducer = (state = initialState, action: any): RestaurantState => {
     switch (action.type) {
         case actionTypes.CREATE_RESTAURANT_REQUEST:
         case actionTypes.GET_ALL_RESTAURANTS_REQUEST:

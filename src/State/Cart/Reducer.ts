@@ -1,14 +1,15 @@
 import { LOGOUT } from '../Authentication/ActionTypes';
+import { CartState } from '../model';
 import * as actionTypes from './ActionTypes';
 
-const initialState = {
+const initialState: CartState = {
     cart: null,
     cartItems: [],
     loading: false,
     error: null,
 };
 
-const cartReducer = (state = initialState, action: any) => {
+const cartReducer = (state = initialState, action: any): CartState => {
     switch (action.type) {
         case actionTypes.FIND_CART_REQUEST:
         case actionTypes.GET_ALL_CART_ITEMS_REQUEST:

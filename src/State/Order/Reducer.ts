@@ -1,16 +1,17 @@
+import { OrderState } from '../model';
 import {
     GET_USERS_ORDERS_FAILURE,
     GET_USERS_ORDERS_REQUEST,
     GET_USERS_ORDERS_SUCCESS,
 } from './ActionTypes';
 
-const initialState = {
+const initialState: OrderState = {
     loading: false,
     orders: [],
     error: null,
 };
 
-export const orderReducer = (state = initialState, { type, payload }: any) => {
+export const orderReducer = (state = initialState, { type, payload }: any): OrderState => {
     switch (type) {
         case GET_USERS_ORDERS_REQUEST:
             return { ...state, error: null, loading: true };

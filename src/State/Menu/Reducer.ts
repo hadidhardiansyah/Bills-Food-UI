@@ -1,6 +1,7 @@
+import { MenuState } from '../model';
 import * as actionTypes from './ActionTypes';
 
-const initialState = {
+const initialState: MenuState = {
     menuItems: [],
     loading: false,
     error: null,
@@ -8,7 +9,7 @@ const initialState = {
     message: null,
 };
 
-const menuItemReducer = (state = initialState, action: any) => {
+const menuItemReducer = (state = initialState, action: any): MenuState => {
     switch (action.type) {
         case actionTypes.CREATE_MENU_ITEM_REQUEST:
         case actionTypes.GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST:

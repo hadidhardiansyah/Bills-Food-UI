@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Home.css';
 import MultiItemCarousel from './MultiItemCarousel';
 import RestaurantCard from '../Restaurant/RestaurantCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '../../State/store';
+import { AnyAction } from 'redux';
+import { getAllRestaurantsAction } from '../../State/Restaurant/Action';
 
-const restaurants = [1, 2, 3, 4, 5];
+export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
+
 const Home = () => {
+    const dispatch = useDispatch<AppDispatch>();
+    const jwt = localStorage.getItem('jwt');
+
+    const restaurants  = useSelector((store: RootState) => store.restaurant.restaurants);    
+
+    useEffect(() => {
+        if (jwt) {
+            dispatch(getAllRestaurantsAction(jwt));
+        } else {
+            console.log('Token not found in local storage');
+        }
+    }, [jwt, dispatch]);
+
     return (
         <div className="pb-10">
             <section className="banner -z-50 relative flex flex-col justify-center items-center">
@@ -33,7 +52,7 @@ const Home = () => {
                 </h1>
                 <div className="flex flex-wrap items-center justify-around gap-5">
                     {restaurants.map((item) => (
-                        <RestaurantCard />
+                        <RestaurantCard item ={item}/>
                     ))}
                 </div>
             </section>

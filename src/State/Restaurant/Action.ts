@@ -43,7 +43,7 @@ import {
 } from './ActionTypes';
 import { string } from 'yup';
 
-export const getAllRestaurantsRequest = (token: string) => {
+export const getAllRestaurantsAction = (token: string) => {
     return async (dispatch: Dispatch) => {
         dispatch({ type: GET_ALL_RESTAURANTS_REQUEST });
 

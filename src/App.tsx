@@ -9,16 +9,19 @@ import { getUser } from './State/Authentication/Action';
 import { RootState } from './State/store';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { RootStateModel } from './models/storeModel';
 
 function App() {
     const dispatch =
         useDispatch<ThunkDispatch<RootState, unknown, AnyAction>>();
     const jwt = localStorage.getItem('jwt');
-    const { auth } = useSelector((store: RootStateModel) => store);
+    const auth = useSelector((store: RootState) => store.auth);
 
     useEffect(() => {
-        dispatch(getUser(auth.jwt || jwt));
+        if (jwt) {
+            dispatch(getUser(auth.jwt || jwt));
+        } else {
+            console.log('Token not found in local storage');
+        }
     }, [auth.jwt]);
     return (
         <ThemeProvider theme={darkTheme}>

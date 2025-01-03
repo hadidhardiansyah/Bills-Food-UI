@@ -1,5 +1,3 @@
-import path from 'path';
-
 export interface UserLoginModel {
     email: string;
     password: string;

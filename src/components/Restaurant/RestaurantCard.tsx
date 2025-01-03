@@ -2,8 +2,13 @@ import { Card, Chip, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import React from 'react';
+import { RestaurantResponseModel } from '../../models/restaurantModel';
 
-function RestaurantCard() {
+interface RestaurantCardProps {
+    item: RestaurantResponseModel;
+}
+
+const RestaurantCard: React.FC<RestaurantCardProps> = ({ item }) => {
     return (
         <Card className="m-5 w-[18rem]">
             <div
@@ -11,7 +16,7 @@ function RestaurantCard() {
             >
                 <img
                     className="w-full h-[10rem] rounded-t-md object-cover"
-                    src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    src={item.images[0]}
                     alt=""
                 />
                 <Chip
@@ -23,9 +28,9 @@ function RestaurantCard() {
             </div>
             <div className="p-4 textPart lg:flex w-full justify-between">
                 <div className="space-y-1">
-                    <p className="font-semibold text-lg">Bar</p>
+                    <p className="font-semibold text-lg">{item.name}</p>
                     <p className="text-gray-500 text-sm">
-                        Empty Bar Filled With Lights
+                        { item.description }
                     </p>
                 </div>
                 <div>

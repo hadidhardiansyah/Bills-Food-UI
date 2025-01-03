@@ -7,10 +7,10 @@ import './Navbar.css';
 import { Person } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootStateModel } from '../../models/storeModel';
+import { RootState } from '../../State/rootReducer';
 
 export const Navbar = () => {
-    const { auth } = useSelector((store: RootStateModel) => store);
+    const auth = useSelector((store: RootState) => store.auth);
     const navigate = useNavigate();
 
     const handleAvatarClick = () => {

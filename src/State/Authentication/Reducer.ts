@@ -1,4 +1,5 @@
 import { isPresentInFavorites } from '../../components/config/logic';
+import { AuthState } from '../model';
 import {
     ADD_TO_FAVORITE_FAILURE,
     ADD_TO_FAVORITE_REQUEST,
@@ -15,7 +16,7 @@ import {
     REGISTER_SUCCESS,
 } from './ActionTypes';
 
-const initialState = {
+const initialState: AuthState = {
     user: null,
     isLoading: false,
     error: null,
@@ -24,7 +25,7 @@ const initialState = {
     success: null,
 };
 
-export const authReducer = (state = initialState, action: any) => {
+export const authReducer = (state = initialState, action: any): AuthState => {
     switch (action.type) {
         case REGISTER_REQUEST:
         case LOGIN_REQUEST:

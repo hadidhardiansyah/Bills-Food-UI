@@ -1,3 +1,4 @@
+import { OrderState } from '../model';
 import {
     GET_RESTAURANTS_ORDER_FAILURE,
     GET_RESTAURANTS_ORDER_REQUEST,
@@ -7,13 +8,13 @@ import {
     UPDATE_ORDER_STATUS_SUCCESS,
 } from './ActionTypes';
 
-const initialState = {
+const initialState: OrderState = {
     loading: false,
     error: null,
     orders: [],
 };
 
-const restaurantsOrderReducer = (state = initialState, action: any) => {
+const restaurantsOrderReducer = (state = initialState, action: any): OrderState => {
     switch (action.type) {
         case GET_RESTAURANTS_ORDER_REQUEST:
         case UPDATE_ORDER_STATUS_REQUEST:
