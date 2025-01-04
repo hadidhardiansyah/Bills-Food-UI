@@ -9,8 +9,16 @@ import {
 } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MenuCard from './MenuCard';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '../../State/rootReducer';
+import { AnyAction } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRestaurantById } from '../../State/Restaurant/Action';
+
+export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
 
 const categories = ['pizza', 'burger', 'chicken', 'rice', 'fries'];
 const foodTypes = [
@@ -27,6 +35,16 @@ const RestaurantDetail = () => {
         console.log(e.target.value, e.target.name);
     };
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
+    const jwt = localStorage.getItem('jwt');
+    const {auth, restaurant} = useSelector((store: RootState) => store);
+    const {id, city} = useParams();
+ 
+    useEffect(() => {
+        dispatch(getRestaurantById({jwt, restaurantId: id}));
+    }, [jwt, dispatch]);
+
     return (
         <div className="px-5 lg:px-20">
             <section>
@@ -36,29 +54,29 @@ const RestaurantDetail = () => {
                         <Grid item xs={12}>
                             <img
                                 className="w-full h-[40v] object-cover"
-                                src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                src={restaurant.restaurant?.images[0]}
                                 alt=""
                             />
                         </Grid>
                         <Grid item xs={12} lg={6}>
                             <img
                                 className="w-full h-[40v] object-cover"
-                                src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                src={restaurant.restaurant?.images[0]}
                                 alt=""
                             />
                         </Grid>
                         <Grid item xs={12} lg={6}>
                             <img
                                 className="w-full h-[40v] object-cover"
-                                src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                src={restaurant.restaurant?.images[0]}
                                 alt=""
                             />
                         </Grid>
                     </Grid>
                 </div>
                 <div className="pt-3 pb-5">
-                    <h1 className="text-4xl font-semibold">Burger Bar</h1>
-                    <p className="text-gray-500 mt-1">This is description</p>
+                    <h1 className="text-4xl font-semibold">{restaurant.restaurant?.name}</h1>
+                    <p className="text-gray-500 mt-1">{restaurant.restaurant?.description}</p>
                     <div className="space-y-3 mt-3">
                         <p className="text-gray-500 flex items-center gap-3">
                             <LocationOnIcon />
@@ -66,7 +84,7 @@ const RestaurantDetail = () => {
                         </p>
                         <p className="text-gray-500 flex items-center gap-3">
                             <CalendarTodayIcon />
-                            <span>Mon-Sun: 09:00 AM - 09:00 PM</span>
+                            <span>{restaurant.restaurant?.openingHours}</span>
                         </p>
                     </div>
                 </div>

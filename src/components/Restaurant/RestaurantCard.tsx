@@ -32,6 +32,12 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
         }
     };
 
+    const handleNavigateToRestaurant = () => {
+        if (!restaurant.open) {
+            navigate(`/restaurant/${restaurant.address.city}/${restaurant.name}/${restaurant.id}`);
+        }
+    }
+
     return (
         <Card className="m-5 w-[18rem]">
             <div
@@ -51,7 +57,7 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
             </div>
             <div className="p-4 textPart lg:flex w-full justify-between">
                 <div className="space-y-1">
-                    <p className="font-semibold text-lg">{restaurant.name}</p>
+                    <p onClick={handleNavigateToRestaurant} className="font-semibold text-lg cursor-pointer">{restaurant.name}</p>
                     <p className="text-gray-500 text-sm">
                         {restaurant.description}
                     </p>
