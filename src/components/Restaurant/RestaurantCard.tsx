@@ -23,13 +23,15 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
                     size="small"
                     className="absolute top-2 left-2"
                     color={restaurant.open ? 'success' : 'error'}
-                    label={restaurant.open  ? 'open' : 'closed'}
+                    label={restaurant.open ? 'open' : 'closed'}
                 />
             </div>
             <div className="p-4 textPart lg:flex w-full justify-between">
                 <div className="space-y-1">
                     <p className="font-semibold text-lg">{restaurant.name}</p>
-                    <p className="text-gray-500 text-sm">{restaurant.description}</p>
+                    <p className="text-gray-500 text-sm">
+                        {restaurant.description}
+                    </p>
                 </div>
                 <div>
                     <IconButton>
