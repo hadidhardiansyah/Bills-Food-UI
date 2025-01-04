@@ -18,15 +18,14 @@ interface RestaurantCardProps {
 export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
 
 const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
-
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
     const jwt = localStorage.getItem('jwt');
     const auth = useSelector((store: RootState) => store.auth);
 
     const handleAddToFavorite = () => {
-        if (jwt) {            
-            dispatch(addToFavorite(jwt, restaurant.id))
+        if (jwt) {
+            dispatch(addToFavorite(jwt, restaurant.id));
         } else {
             console.log('Token not found in local storage');
         }
@@ -34,9 +33,11 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
 
     const handleNavigateToRestaurant = () => {
         if (!restaurant.open) {
-            navigate(`/restaurant/${restaurant.address.city}/${restaurant.name}/${restaurant.id}`);
+            navigate(
+                `/restaurant/${restaurant.address.city}/${restaurant.name}/${restaurant.id}`
+            );
         }
-    }
+    };
 
     return (
         <Card className="m-5 w-[18rem]">
@@ -57,14 +58,23 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
             </div>
             <div className="p-4 textPart lg:flex w-full justify-between">
                 <div className="space-y-1">
-                    <p onClick={handleNavigateToRestaurant} className="font-semibold text-lg cursor-pointer">{restaurant.name}</p>
+                    <p
+                        onClick={handleNavigateToRestaurant}
+                        className="font-semibold text-lg cursor-pointer"
+                    >
+                        {restaurant.name}
+                    </p>
                     <p className="text-gray-500 text-sm">
                         {restaurant.description}
                     </p>
                 </div>
                 <div>
                     <IconButton onClick={handleAddToFavorite}>
-                        {isPresentInFavorites(auth.favorites, restaurant) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                        {isPresentInFavorites(auth.favorites, restaurant) ? (
+                            <FavoriteIcon />
+                        ) : (
+                            <FavoriteBorderIcon />
+                        )}
                     </IconButton>
                 </div>
             </div>

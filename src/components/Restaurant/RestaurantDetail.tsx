@@ -38,11 +38,11 @@ const RestaurantDetail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
     const jwt = localStorage.getItem('jwt');
-    const {auth, restaurant} = useSelector((store: RootState) => store);
-    const {id, city} = useParams();
- 
+    const { auth, restaurant } = useSelector((store: RootState) => store);
+    const { id, city } = useParams();
+
     useEffect(() => {
-        dispatch(getRestaurantById({jwt, restaurantId: id}));
+        dispatch(getRestaurantById({ jwt, restaurantId: id }));
     }, [jwt, dispatch]);
 
     return (
@@ -75,8 +75,12 @@ const RestaurantDetail = () => {
                     </Grid>
                 </div>
                 <div className="pt-3 pb-5">
-                    <h1 className="text-4xl font-semibold">{restaurant.restaurant?.name}</h1>
-                    <p className="text-gray-500 mt-1">{restaurant.restaurant?.description}</p>
+                    <h1 className="text-4xl font-semibold">
+                        {restaurant.restaurant?.name}
+                    </h1>
+                    <p className="text-gray-500 mt-1">
+                        {restaurant.restaurant?.description}
+                    </p>
                     <div className="space-y-3 mt-3">
                         <p className="text-gray-500 flex items-center gap-3">
                             <LocationOnIcon />
