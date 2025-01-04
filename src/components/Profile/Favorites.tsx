@@ -33,7 +33,7 @@ export const Favorites: FC<FavoritesProps> = ({}) => {
             </h1>
             <div className="flex flex-wrap justify-center">
                 {restaurants.map((restaurant) => (
-                    <RestaurantCard item={restaurant} />
+                    <RestaurantCard restaurant={restaurant} />
                 ))}
             </div>
         </div>

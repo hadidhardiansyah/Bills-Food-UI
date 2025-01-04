@@ -53,8 +53,8 @@ const Home = () => {
                     Order From Our Handpicked Favorites
                 </h1>
                 <div className="flex flex-wrap items-center justify-around gap-5">
-                    {restaurants.map((item) => (
-                        <RestaurantCard item={item} />
+                    {restaurants.map((restaurant) => (
+                        <RestaurantCard restaurant={restaurant} />
                     ))}
                 </div>
             </section>
