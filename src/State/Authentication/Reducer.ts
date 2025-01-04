@@ -50,6 +50,7 @@ export const authReducer = (state = initialState, action: any): AuthState => {
                 ...state,
                 isLoading: false,
                 user: action.payload,
+                favorites: action.payload.favorites,
             };
         case ADD_TO_FAVORITE_SUCCESS:
             return {
@@ -58,7 +59,7 @@ export const authReducer = (state = initialState, action: any): AuthState => {
                 error: null,
                 favorites: isPresentInFavorites(state.favorites, action.payload)
                     ? state.favorites.filter(
-                          (item: any) => item.id === action.payload.id
+                          (item: any) => item.id !== action.payload.id
                       )
                     : [action.payload, ...state.favorites],
             };

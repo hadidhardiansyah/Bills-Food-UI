@@ -10,21 +10,7 @@ interface FavoritesProps {}
 export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
 
 export const Favorites: FC<FavoritesProps> = ({}) => {
-    // sementara mengambil all restaurant
-    const dispatch = useDispatch<AppDispatch>();
-    const jwt = localStorage.getItem('jwt');
-
-    const restaurants = useSelector(
-        (store: RootState) => store.restaurant.restaurants
-    );
-
-    useEffect(() => {
-        if (jwt) {
-            dispatch(getAllRestaurantsAction(jwt));
-        } else {
-            console.log('Token not found in local storage');
-        }
-    }, [jwt, dispatch]);
+    const auth = useSelector((store: RootState) => store.auth);
 
     return (
         <div>
@@ -32,7 +18,7 @@ export const Favorites: FC<FavoritesProps> = ({}) => {
                 My Favorites
             </h1>
             <div className="flex flex-wrap justify-center">
-                {restaurants.map((restaurant) => (
+                {auth.favorites.map((restaurant) => (
                     <RestaurantCard restaurant={restaurant} />
                 ))}
             </div>

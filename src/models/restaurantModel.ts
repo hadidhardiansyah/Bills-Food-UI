@@ -1,5 +1,5 @@
 export interface RestaurantResponseModel {
-    id: number;
+    id: string;
     owner: Owner;
     name: string;
     description: string;

@@ -3,12 +3,35 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import React from 'react';
 import { RestaurantResponseModel } from '../../models/restaurantModel';
+import { useNavigate } from 'react-router-dom';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '../../State/rootReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { AnyAction } from 'redux';
+import { addToFavorite } from '../../State/Authentication/Action';
+import { isPresentInFavorites } from '../config/logic';
 
 interface RestaurantCardProps {
     restaurant: RestaurantResponseModel;
 }
 
+export type AppDispatch = ThunkDispatch<RootState, unknown, AnyAction>;
+
 const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
+    const jwt = localStorage.getItem('jwt');
+    const auth = useSelector((store: RootState) => store.auth);
+
+    const handleAddToFavorite = () => {
+        if (jwt) {            
+            dispatch(addToFavorite(jwt, restaurant.id))
+        } else {
+            console.log('Token not found in local storage');
+        }
+    };
+
     return (
         <Card className="m-5 w-[18rem]">
             <div
@@ -34,8 +57,8 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
                     </p>
                 </div>
                 <div>
-                    <IconButton>
-                        {true ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                    <IconButton onClick={handleAddToFavorite}>
+                        {isPresentInFavorites(auth.favorites, restaurant) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                     </IconButton>
                 </div>
             </div>
