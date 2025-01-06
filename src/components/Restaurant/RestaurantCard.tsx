@@ -32,7 +32,7 @@ const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
     };
 
     const handleNavigateToRestaurant = () => {
-        if (!restaurant.open) {
+        if (restaurant.open) {
             navigate(
                 `/restaurant/${restaurant.address.city}/${restaurant.name}/${restaurant.id}`
             );

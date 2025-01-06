@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React from 'react';
+import { FoodMenuItemProps } from '../../models/foodMenuModel';
 
 const demo = [
     {
@@ -21,7 +22,11 @@ const demo = [
     },
 ];
 
-const MenuCard = () => {
+interface MenuCardProps {
+    menu: FoodMenuItemProps;
+}
+
+const MenuCard: React.FC<MenuCardProps> = ({ menu }) => {
     const handleCheckBoxChange = (value: any) => {
         console.log(`Value: ${value}`);
     };
@@ -38,13 +43,22 @@ const MenuCard = () => {
                         <div className="lg:flex items-center lg:gap-5">
                             <img
                                 className="w-[7rem] h-[7rem] object-cover"
-                                src="https://images.pexels.com/photos/29368032/pexels-photo-29368032/free-photo-of-delicious-gourmet-burger-with-fresh-ingredients.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                src={menu.images[0]}
                                 alt=""
                             />
                             <div className="space-y-1 lg:space-y-5 lg:max-w-2xl">
-                                <p className="font-semibold text-xl">Burger</p>
-                                <p>Rp.49,999</p>
-                                <p className="text-gray-400">Burger Basic</p>
+                                <p className="font-semibold text-xl">
+                                    {menu.name}
+                                </p>
+                                <p>
+                                    Rp.{' '}
+                                    <span>
+                                        {menu.price.toLocaleString('id-ID')}
+                                    </span>
+                                </p>
+                                <p className="text-gray-400">
+                                    {menu.description}
+                                </p>
                             </div>
                         </div>
                     </div>
